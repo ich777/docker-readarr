@@ -53,16 +53,18 @@ if [ -z "$CUR_V" ]; then
 elif [ "$CUR_V" != "$LAT_V" ]; then
   echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
   cd ${DATA_DIR}
-  rm -rf ${DATA_DIR}/Readarr
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Readarr-v$LAT_V.tar.gz "https://github.com/Readarr/Readarr/releases/download/v${LAT_V}/Readarr.${RELEASE}.${LAT_V}.linux-core-${ARCH}.tar.gz" ; then
     echo "---Successfully downloaded Readarr v$LAT_V---"
   else
-    echo "---Something went wrong, can't download Readarr v$LAT_V, putting container into sleep mode!---"
-    sleep infinity
+    echo "---Something went wrong, can't download Readarr v$LAT_V, falling back to v$CUR_V!---"
+    EXIT_STATUS=1
   fi
-  mkdir ${DATA_DIR}/Readarr 2>/dev/null
-  tar -C ${DATA_DIR}/Readarr --strip-components=1 -xf ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
-  rm ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
+  if [ "${EXIT_STATUS}" != "1" ]; then
+    rm -R ${DATA_DIR}/Readarr
+    mkdir ${DATA_DIR}/Readarr
+    tar -C ${DATA_DIR}/Readarr --strip-components=1 -xf ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
+    rm ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
+  fi
 elif [ "$CUR_V" == "$LAT_V" ]; then
   echo "---Readarr v$CUR_V up-to-date---"
 fi
