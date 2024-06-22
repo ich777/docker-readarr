@@ -59,6 +59,9 @@ elif [ "$CUR_V" != "$LAT_V" ]; then
     echo "---Something went wrong, can't download Readarr v$LAT_V, putting container into sleep mode!---"
     sleep infinity
   fi
+  mkdir ${DATA_DIR}/Readarr 2>/dev/null
+  tar -C ${DATA_DIR}/Readarr --strip-components=1 -xf ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
+  rm ${DATA_DIR}/Readarr-v$LAT_V.tar.gz
 elif [ "$CUR_V" == "$LAT_V" ]; then
   echo "---Readarr v$CUR_V up-to-date---"
 fi
