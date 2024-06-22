@@ -19,5 +19,5 @@ if [ "${EXIT_STATUS}" != 0 ]; then
 else
   echo "---Connection to connected container: ${CONNECTED_CONTAINERS} lost, restarting in ${CONNECTED_CONTAINERS_TIMEOUT} seconds...---"
   sleep ${CONNECTED_CONTAINERS_TIMEOUT}s
-  kill -SIGINT $(pidof Readarr)
+  kill -SIGTERM $(pidof Readarr)
 fi
