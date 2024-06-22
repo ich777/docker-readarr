@@ -16,7 +16,7 @@ ENV CONNECTED_CONTAINERS=""
 ENV CONNECTED_CONTAINERS_TIMEOUT=10
 ENV UID=99
 ENV GID=100
-ENV USER="lidarr"
+ENV USER="readarr"
 
 RUN mkdir $DATA_DIR && \
 	mkdir /mnt/downloads && \
