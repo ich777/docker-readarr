@@ -30,9 +30,9 @@ fi
 
 echo "---Starting...---"
 term_handler() {
-  kill -SIGINT $(pidof Readarr)
-  tail --pid=$(pidof Readarr) -f 2>/dev/null
-  exit 143;
+	kill -SIGTERM "$killpid"
+	wait "$killpid" -f 2>/dev/null
+	exit 143;
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
