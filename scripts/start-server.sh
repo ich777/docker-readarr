@@ -53,6 +53,7 @@ if [ -z "$CUR_V" ]; then
 elif [ "$CUR_V" != "$LAT_V" ]; then
   echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
   cd ${DATA_DIR}
+  rm -rf ${DATA_DIR}/Readarr
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Readarr-v$LAT_V.tar.gz "https://github.com/Readarr/Readarr/releases/download/v${LAT_V}/Readarr.${RELEASE}.${LAT_V}.linux-core-${ARCH}.tar.gz" ; then
     echo "---Successfully downloaded Readarr v$LAT_V---"
   else
