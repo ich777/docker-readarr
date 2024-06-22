@@ -8,7 +8,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/readarr"
-ENV READARR_REL="debug"
+ENV READARR_REL="develop"
 ENV START_PARAMS=""
 ENV UMASK=0000
 ENV DATA_PERM=770
