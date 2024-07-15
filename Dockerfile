@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-readarr"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends libicu72 libsqlite3-0 jq && \
+	apt-get -y install --no-install-recommends libicu72 libsqlite3-0 jq netcat-traditional && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/readarr"
